@@ -1,9 +1,16 @@
 import React, { useState } from 'react'
 import "./Home.css"
+import { useNavigate } from 'react-router'
 
-function Home() {
-  const [count, setCount] = useState<number>(1)
+interface countProps {
+  count: number,
+  setCount: React.Dispatch<React.SetStateAction<number>>,
+}
+
+function Home({count, setCount}: countProps) {
   
+  const navigate = useNavigate()
+
   return (
     <div className="container">
       <div className='title-container'>
@@ -21,7 +28,7 @@ function Home() {
               />  
             </label>
           </div>
-          <button onClick={() => {window.location.href="/Result"}} className='generate-button'>生成</button>
+          <button onClick={() => {navigate("/result", {state: count})}} className='generate-button'>生成</button>
         </div>
       </div>
     </div>
