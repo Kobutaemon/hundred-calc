@@ -1,3 +1,24 @@
-.reuslt td{
+.result {
+  display: flex;
+  justify-content: center;
+}
+
+.result table {
+  border: 2px #000 solid;
+  width: 100%;
+  font-size: 2rem;
+  text-align: center;
+  border-collapse: collapse;
+}
+
+.result tr td{
+  min-width: 70px;
+  height: 70px;
   border: 1px #000 solid;
+}
+
+@media print {
+  footer {
+    display: none;
+  }
 }

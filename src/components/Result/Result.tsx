@@ -1,32 +1,64 @@
-import "./Result.css"
-import Footer from '../Footer/Footer'
-import { useLocation } from 'react-router'
+import "./Result.css";
+import Footer from '../Footer/Footer';
+import { useLocation } from 'react-router';
+import { useEffect, useState } from 'react';
 
+type Question = {
+  rows: number[];
+  columns: number[];
+};
 
 function Result() {
   const location = useLocation();
-  const count = location.state;
-  const questionOption: number[] = []
+  const count: number = location.state;
+  const [questions, setQuestions] = useState<Question[]>([]);
 
-  for(let questionNumber = 0; questionNumber < count; questionNumber++) { //問題数のfor文
-    for (let n = 0; n < 10; n++) { //10x10を作るためのfor文
-      const randomNumber = Math.floor(Math.random() * 10);
-      questionOption[n] = randomNumber
-    }
+  function generateQuestion(): Question {
+    const rows = Array.from({ length: 10 }, () => Math.floor(Math.random() * 10));
+    const columns = Array.from({ length: 10 }, () => Math.floor(Math.random() * 10));
+    return { rows, columns };
   }
+
+  useEffect(() => {
+    const generatedQuestions: Question[] = [];
+    for (let i = 0; i < count; i++) {
+      generatedQuestions.push(generateQuestion());
+    }
+    setQuestions(generatedQuestions);
+  }, [count]);
 
   return (
     <div className='result-container'>
       <div className="result">
-        <table>
-          <tr>
-            {questionOption.map(i => <td>{i}</td>)}
-          </tr>
-        </table>
+        {questions.map((question, qIndex) => (
+          <div key={qIndex} className="question-table">
+            <h3>問題 {qIndex + 1}</h3>
+            <table>
+              <thead>
+                <tr>
+                  <th></th>
+                  {question.columns.map((col, i) => (
+                    <th key={`col-${i}`}>{col}</th>
+                  ))}
+                </tr>
+              </thead>
+              <tbody>
+                {question.rows.map((row, i) => (
+                  <tr key={`row-${i}`}>
+                    <th>{row}</th>
+                    {question.columns.map((_, j) => (
+                      <td key={`cell-${i}-${j}`}></td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        ))}
       </div>
       <Footer />
     </div>
-  )
+  );
 }
 
-export default Result
+export default Result;
