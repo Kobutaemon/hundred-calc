@@ -11,6 +11,14 @@ interface countProps {
 function Home({count, setCount}: countProps) {
   
   const navigate = useNavigate()
+  const [isComposing, setIsComposing] = useState(false);
+
+  function handleKeyDown(event: { key: string }) {
+    if (event.key === 'Enter' && !isComposing) {
+      // 入力を確定したときの処理（送信・表示・入力フォームのクリアなど）
+      navigate("/result", {state: count});
+    }
+  }
 
   return (
     <div className="container">
@@ -26,6 +34,9 @@ function Home({count, setCount}: countProps) {
                 value={count}
                 onChange={(e) => {setCount(Number(e.target.value))}}
                 id='counter-input'
+                onKeyDown={handleKeyDown}
+                onCompositionStart={() => {setIsComposing(true)}}
+                onCompositionEnd={() => {setIsComposing(false)}}
               />  
             </label>
           </div>
