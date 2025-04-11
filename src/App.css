@@ -1,4 +1,6 @@
-.App {
-  width: 60%;
-  margin: 0 auto;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Noto Sans JP", sans-serif;
 }
