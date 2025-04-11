@@ -1,11 +1,12 @@
 import React from 'react'
 import "./Footer.css"
+import { Button } from '@mui/material';
 
 function Footer() {
   return (
     <div>
-      <footer>
-        <h3 onClick={() => {window.location.href="/"}}>トップページへ戻る</h3>
+      <footer className='no-print'>
+        <Button variant='outlined' onClick={() => {window.location.href="/"}}>トップページへ戻る</Button>
       </footer>
     </div>
   )

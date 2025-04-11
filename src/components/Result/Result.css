@@ -1,9 +1,10 @@
 .result {
   display: flex;
   justify-content: center;
+  flex-direction: column;
 }
 
-.result table {
+.question-table table {
   border: 2px #000 solid;
   width: 100%;
   font-size: 2rem;
@@ -11,14 +12,18 @@
   border-collapse: collapse;
 }
 
-.result tr td{
+.question-table tr td{
   min-width: 70px;
   height: 70px;
   border: 1px #000 solid;
 }
 
 @media print {
-  footer {
+  .no-print {
     display: none;
+  }
+
+  .question-table:not(:last-child) {
+    break-after: page;
   }
 }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import "./Home.css"
 import { useNavigate } from 'react-router'
+import { Button } from '@mui/material'
 
 interface countProps {
   count: number,
@@ -28,7 +29,7 @@ function Home({count, setCount}: countProps) {
               />  
             </label>
           </div>
-          <button onClick={() => {navigate("/result", {state: count})}} className='generate-button'>生成</button>
+          <Button variant='contained' onClick={() => {navigate("/result", {state: count})}} className='generate-button'>生成</Button>
         </div>
       </div>
     </div>
