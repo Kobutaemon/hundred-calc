@@ -1,4 +1,3 @@
-import React from 'react'
 import "./Result.css"
 import Footer from '../Footer/Footer'
 import { useLocation } from 'react-router'
@@ -9,17 +8,20 @@ function Result() {
   const count = location.state;
   const questionOption: number[] = []
 
-  for (let n = 0; n < count; n++) {
-    const randomNumber = Math.floor(Math.random() * 10);
-    questionOption[n] += randomNumber
+  for(let questionNumber = 0; questionNumber < count; questionNumber++) { //問題数のfor文
+    for (let n = 0; n < 10; n++) { //10x10を作るためのfor文
+      const randomNumber = Math.floor(Math.random() * 10);
+      questionOption[n] += randomNumber
+    }
   }
+  console.log(questionOption.map(i => {i}))
 
   return (
     <div className='result-container'>
       <div className="result">
         <table>
           <tr>
-            {questionOption.map(i => <td key={}>{i}</td>)}
+            {/* {questionOption.map(i => <td>{i}</td>)} */}
           </tr>
         </table>
       </div>
