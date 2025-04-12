@@ -18,6 +18,7 @@ function Result() {
   function generateQuestion(): Question {
     const rows = Array.from({ length: 10 }, () => Math.floor(Math.random() * 10));
     const columns = Array.from({ length: 10 }, () => Math.floor(Math.random() * 10));
+    console.log(rows, columns)
     return { rows, columns };
   }
 
