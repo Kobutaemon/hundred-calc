@@ -2,6 +2,7 @@ import "./Result.css";
 import Footer from '../Footer/Footer';
 import { useLocation } from 'react-router';
 import { useEffect, useState } from 'react';
+import { Button } from "@mui/material";
 
 
 type Question = {
@@ -59,7 +60,10 @@ function Result() {
           </div>
         ))}
       </div>
-      <Footer />
+      <div className="btn">
+        <Button className="print-btn no-print" variant="contained" onClick={() => {window.print()}}>印刷</Button>
+        <Footer />
+      </div>
     </div>
   );
 }
