@@ -49,6 +49,15 @@ function Home({count, setCount}: countProps) {
               />
               <p className='upper-limit'>※上限100</p>
             </label>
+            <label htmlFor="choice-arithmetic">
+              選択肢：
+              <select id="choice-arithmetic">
+                <option value="plus">＋</option>
+                <option value="minus">ー</option>
+                <option value="plus">✕</option>
+                <option value="random">ランダム</option>
+              </select>
+            </label>
           </div>
           <Button variant='contained' onClick={checkUpper} className='generate-button'>生成</Button>
         </div>
