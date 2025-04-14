@@ -24,6 +24,9 @@ function Home({count, setCount}: countProps) {
     if (count > 100) {
       alert("生成問題数の上限は100問です。")
     }
+    else {
+      navigate("/result", {state: count})
+    }
   }
 
   return (
@@ -48,7 +51,7 @@ function Home({count, setCount}: countProps) {
               <p className='upper-limit'>※上限100</p>
             </label>
           </div>
-          <Button variant='contained' onClick={() => {navigate("/result", {state: count})}} className='generate-button'>生成</Button>
+          <Button variant='contained' onClick={checkUpper} className='generate-button'>生成</Button>
         </div>
       </div>
     </div>
