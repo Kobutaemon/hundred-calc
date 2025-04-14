@@ -13,19 +13,18 @@ function Home({count, setCount}: countProps) {
   const navigate = useNavigate()
   const [isComposing, setIsComposing] = useState(false);
 
-  function handleKeyDown(event: { key: string }) {
-    if (event.key === 'Enter' && !isComposing) {
-      // 入力を確定したときの処理（送信・表示・入力フォームのクリアなど）
-      navigate("/result", {state: count});
-    }
-  }
-
-  function checkUpper() {
+  function checkUpper() { //countの値が100以内かチェック
     if (count > 100) {
       alert("生成問題数の上限は100問です。")
     }
     else {
       navigate("/result", {state: count})
+    }
+  }
+
+  function handleKeyDown(event: { key: string }) { //エンターキーを押した時に呼び出される関数
+    if (event.key === 'Enter' && !isComposing) {
+      checkUpper()
     }
   }
 
