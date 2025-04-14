@@ -22,6 +22,10 @@
   gap: 30px;
 }
 
+.upper-limit {
+  color: #777;
+}
+
 @media screen and (max-width: 768px) {
   .container {
     width: 90%;

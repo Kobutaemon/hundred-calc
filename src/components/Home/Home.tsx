@@ -27,7 +27,7 @@ function Home({count, setCount}: countProps) {
         <div className="generate-container">
           <div className="counter">
             <label htmlFor="counter-input">
-              個数：
+              問題数：
               <input 
                 type='number'
                 className='counter-number no-spin'
@@ -37,7 +37,9 @@ function Home({count, setCount}: countProps) {
                 onKeyDown={handleKeyDown}
                 onCompositionStart={() => {setIsComposing(true)}}
                 onCompositionEnd={() => {setIsComposing(false)}}
-              />  
+                placeholder='上限100'
+              />
+              <p className='upper-limit'>※上限100</p>
             </label>
           </div>
           <Button variant='contained' onClick={() => {navigate("/result", {state: count})}} className='generate-button'>生成</Button>

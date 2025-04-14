@@ -17,22 +17,32 @@ function Result() {
 
   //rowsとcolumnsに乱数を入れ、returnする関数
   function generateQuestion(): Question {
-    const rows = Array.from({ length: 10 }, () => Math.floor(Math.random() * 10));
-    const columns = Array.from({ length: 10 }, () => Math.floor(Math.random() * 10));
+    const rows = Array.from({ length: 10 }, () => Math.floor(Math.random() * 9) + 1);
+    const columns = Array.from({ length: 10 }, () => Math.floor(Math.random() * 9) + 1);
     console.log(rows, columns)
     return { rows, columns };
   }
 
   useEffect(() => {
     const generatedQuestions: Question[] = [];
-    for (let i = 0; i < count; i++) {
-      generatedQuestions.push(generateQuestion());
+    if (count <= 100) {
+      for (let i = 0; i < count; i++) {
+        generatedQuestions.push(generateQuestion());
+      }
+      setQuestions(generatedQuestions);
     }
-    setQuestions(generatedQuestions);
+    else {
+      alert("生成問題数の上限は100問です。")
+      window.location.href = "/";
+    }
   }, [count]);
 
   return (
     <div className='result-container'>
+      <div className="btn no-print">
+        <Button variant="contained" onClick={() => { window.print() }}>印刷</Button>
+        <Footer />
+      </div>
       <div className="result">
         {questions.map((question, index) => (
           <div key={index} className="question-table">
@@ -59,10 +69,6 @@ function Result() {
             </table>
           </div>
         ))}
-      </div>
-      <div className="btn">
-        <Button className="print-btn no-print" variant="contained" onClick={() => {window.print()}}>印刷</Button>
-        <Footer />
       </div>
     </div>
   );
