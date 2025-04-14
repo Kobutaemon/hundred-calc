@@ -20,6 +20,12 @@ function Home({count, setCount}: countProps) {
     }
   }
 
+  function checkUpper() {
+    if (count > 100) {
+      alert("生成問題数の上限は100問です。")
+    }
+  }
+
   return (
     <div className="container">
       <div className='title-container'>

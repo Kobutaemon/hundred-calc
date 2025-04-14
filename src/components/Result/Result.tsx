@@ -25,16 +25,10 @@ function Result() {
 
   useEffect(() => {
     const generatedQuestions: Question[] = [];
-    if (count <= 100) {
-      for (let i = 0; i < count; i++) {
-        generatedQuestions.push(generateQuestion());
-      }
-      setQuestions(generatedQuestions);
+    for (let i = 0; i < count; i++) {
+      generatedQuestions.push(generateQuestion());
     }
-    else {
-      alert("生成問題数の上限は100問です。")
-      window.location.href = "/";
-    }
+    setQuestions(generatedQuestions);
   }, [count]);
 
   return (
