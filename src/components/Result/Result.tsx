@@ -13,7 +13,7 @@ type Question = {
 function Result() {
   const location = useLocation();
   const count: number = location.state;
-  const arithmetic: string = location.state;
+  // const arithmetic: string = location.state;
   const [questions, setQuestions] = useState<Question[]>([]);
 
   //rowsとcolumnsに乱数を入れ、returnする関数
