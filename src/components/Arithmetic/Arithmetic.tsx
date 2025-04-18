@@ -7,7 +7,7 @@ import Select, { SelectChangeEvent } from '@mui/material/Select';
 
 interface arithmeticProps {
   arithmetic: string,
-  parentSetArithmetic: (value: string) => void,
+  parentSetArithmetic: (value: string) => void, // 親へstateを渡すための関数(parentSetArithmeticに引数で渡した値がsetArithmeticに渡される)
 }
 
 function Arithmetic(props: arithmeticProps) {
