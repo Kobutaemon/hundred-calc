@@ -1,13 +1,9 @@
 import React, { useState } from 'react'
 import "./Home.css"
-// import ChoiceArithmetic from '../ChoiceArithmetic/ChoiceArithmetic'
+import Arithmetic from '../Arithmetic/Arithmetic'
 import { useNavigate } from 'react-router'
 import { Button } from '@mui/material'
-import Box from '@mui/material/Box';
-import InputLabel from '@mui/material/InputLabel';
-import MenuItem from '@mui/material/MenuItem';
-import FormControl from '@mui/material/FormControl';
-import Select, { SelectChangeEvent } from '@mui/material/Select';
+
 
 interface countProps {
   count: number,
@@ -18,24 +14,24 @@ function Home({ count, setCount }: countProps) {
 
   const navigate = useNavigate()
   const [isComposing, setIsComposing] = useState(false);
-  const [arithmetic, setArithmetic] = useState("+");
+  const [arithmetic, setArithmetic] = React.useState<string>("+");
 
-  const handleChange = (event: SelectChangeEvent) => {
-    setArithmetic(event.target.value as string);
-  };
-
-  function checkUpper() { //countの値が100以内かチェック
+  function checkUpperLimit() { //countの値が100以内かチェック
     if (count > 100) {
       alert("生成問題数の上限は100問です。")
     }
     else {
-      navigate("/result", { state: { count: count, arithmetic: arithmetic} })
+      navigate("/result", { state: { count, arithmetic }})
     }
+  }
+
+  function parentSetArithmetic(value: string) { //四則演算の値をセット
+    setArithmetic(value)
   }
 
   function handleKeyDown(event: { key: string }) { //エンターキーを押した時に呼び出される関数
     if (event.key === 'Enter' && !isComposing) {
-      checkUpper()
+      checkUpperLimit()
     }
   }
 
@@ -60,25 +56,10 @@ function Home({ count, setCount }: countProps) {
               <p className='upper-limit'>※上限100</p>
             </label>
             <div className="choice-arithmetic-container">
-              <Box sx={{ minWidth: 100 }}>
-                <FormControl fullWidth>
-                  <InputLabel id="choice-arithmetic">四則演算</InputLabel>
-                  <Select
-                    labelId="choice-arithmetic"
-                    id="arithmetic-select"
-                    value={arithmetic}
-                    label="arithmetic"
-                    onChange={handleChange}
-                  >
-                    <MenuItem value={"+"}>+</MenuItem>
-                    <MenuItem value={"ー"}>−</MenuItem>
-                    <MenuItem value={"×"}>×</MenuItem>
-                  </Select>
-                </FormControl>
-              </Box>
+              <Arithmetic arithmetic={arithmetic} parentSetArithmetic={parentSetArithmetic}/>
             </div>
           </div>
-          <Button variant='contained' onClick={checkUpper} className='generate-button'>生成</Button>
+          <Button variant='contained' onClick={checkUpperLimit} className='generate-button'>生成</Button>
         </div>
       </div>
     </div>
