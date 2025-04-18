@@ -12,8 +12,8 @@ type Question = {
 
 function Result() {
   const location = useLocation();
-  const count: number = location.state;
-  // const arithmetic: string = location.state;
+  const count: number = location.state.count;
+  const arithmetic: string = location.state.arithmetic;
   const [questions, setQuestions] = useState<Question[]>([]);
 
   //rowsとcolumnsに乱数を入れ、returnする関数
@@ -45,7 +45,7 @@ function Result() {
             <table>
               <thead>
                 <tr>
-                  <th></th>
+                  <th>{arithmetic}</th>
                   {question.columns.map((col, i) => (
                     <th key={`col-${i}`}>{col}</th>
                   ))}
